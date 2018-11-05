@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
+import { GeralModule } from "../geral/geral.module";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     FlexLayoutModule,
     PluginsModule,
+    GeralModule,
     HomeRoutingModule
   ],
   declarations: [HomeComponent]

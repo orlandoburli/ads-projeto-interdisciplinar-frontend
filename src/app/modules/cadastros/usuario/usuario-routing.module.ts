@@ -12,7 +12,8 @@ const routes: Routes = [
       { path: '', component: UsuarioConsultaComponent },
       { path: 'new', component: UsuarioCadastroComponent },
       { path: 'edit/:id', component: UsuarioCadastroComponent },
-      { path: 'view/:id', component: UsuarioCadastroComponent }
+      { path: 'view/:id', component: UsuarioCadastroComponent },
+      { path: 'delete/:id', component: UsuarioCadastroComponent }
     ]
   }
 ];
