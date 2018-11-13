@@ -1,16 +1,26 @@
 <mat-card>
   <mat-card-title>
-    Consulta de Usuários
+    Consulta de Cursos
   </mat-card-title>
   <mat-card-subtitle>
-    Consulta dos Usuários de administração do Sistema
+    Consulta dos Cursos disponíveis na plataforma
   </mat-card-subtitle>
 
   <mat-card-content>
     <div class="container example-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-      <div fxFlex="80%">
+      <div fxFlex="60%">
         <mat-form-field>
-          <input autofocus="autofocus" [(ngModel)]="filtro" [debounce]="300" (onDebounce)="pesquisar()" matInput placeholder="Pesquise pelo nome, cpf ou email do usuário..." />
+          <input autofocus="autofocus" [(ngModel)]="filtro" [debounce]="300" (onDebounce)="pesquisar()" matInput placeholder="Pesquise pelo nome do curso" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="20%">
+        <mat-form-field>
+          <mat-select placeholder="Status" [(ngModel)]="status" (ngModelChange)="pesquisar()">
+            <mat-option value="">Todos</mat-option>
+            <mat-option value="Ativo">Ativo</mat-option>
+            <mat-option value="Inativo">Inativo</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 
@@ -39,14 +49,14 @@
             <td mat-cell *matCellDef="let row">{{row.nome}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-            <td mat-cell *matCellDef="let row">{{row.email}}</td>
+          <ng-container matColumnDef="quantidadeSemestres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Semestres</th>
+            <td mat-cell *matCellDef="let row">{{row.quantidadeSemestres}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="cpf">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cpf</th>
-            <td mat-cell *matCellDef="let row">{{row.cpf}}</td>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let row">{{row.status}}</td>
           </ng-container>
 
           <ng-container matColumnDef="buttons">

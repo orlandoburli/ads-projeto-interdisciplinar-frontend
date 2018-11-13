@@ -1,23 +1,26 @@
-import { UsuarioService } from './../usuario.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Usuario, UsuarioConsultaResponse } from '../usuario.model';
 import { MatPaginator, MatSort } from '@angular/material';
+import { DisciplinaConsultaResponse, Disciplina } from '../disciplina.model';
+import { DisciplinaService } from '../disciplina.service';
+
+import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-usuario-consulta',
-  templateUrl: './usuario-consulta.component.html',
-  styleUrls: ['./usuario-consulta.component.css']
+  selector: 'app-disciplina-consulta',
+  templateUrl: './disciplina-consulta.component.html',
+  styleUrls: ['./disciplina-consulta.component.css']
 })
-export class UsuarioConsultaComponent implements OnInit {
+export class DisciplinaConsultaComponent implements OnInit {
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private disciplinaService: DisciplinaService) { }
 
   filtro: string = '';
+  status: string = '';
 
-  public displayedColumns: string[] = ['id', 'nome', 'email', 'cpf', 'buttons'];
+  public displayedColumns: string[] = ['id', 'nome', 'cargaHoraria', 'buttons'];
 
-  dados: UsuarioConsultaResponse = { lista: [], total: 0, paginas: 0 };
+  dados: DisciplinaConsultaResponse = { lista: [], total: 0, paginas: 0 };
 
   isLoadingResults = false;
 
@@ -35,6 +38,11 @@ export class UsuarioConsultaComponent implements OnInit {
     this.sort.sortChange.subscribe(() => this.pesquisar());
 
     this.pesquisar();
+
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => $('[autofocus]').focus(), 300);
   }
 
   private pesquisar() {
@@ -46,7 +54,7 @@ export class UsuarioConsultaComponent implements OnInit {
   atualizar() {
     this.isLoadingResults = true;
 
-    this.usuarioService
+    this.disciplinaService
       .pesquisar(this.filtro, this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize)
       .subscribe((result) => {
         this.isLoadingResults = false;
@@ -61,15 +69,15 @@ export class UsuarioConsultaComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.activeRoute });
   }
 
-  editar(u: Usuario) {
-    this.router.navigate(['edit', u.id], { relativeTo: this.activeRoute });
+  editar(d: Disciplina) {
+    this.router.navigate(['edit', d.id], { relativeTo: this.activeRoute });
   }
 
-  excluir(u: Usuario) {
-    this.router.navigate(['delete', u.id], { relativeTo: this.activeRoute });
+  excluir(d: Disciplina) {
+    this.router.navigate(['delete', d.id], { relativeTo: this.activeRoute });
   }
 
-  visualizar(u: Usuario) {
-    this.router.navigate(['view', u.id], { relativeTo: this.activeRoute });
+  visualizar(d: Disciplina) {
+    this.router.navigate(['view', d.id], { relativeTo: this.activeRoute });
   }
 }

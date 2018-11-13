@@ -1,23 +1,23 @@
-import { UsuarioService } from './../usuario.service';
+import { ProfessorService } from './../professor.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Professor, ProfessorConsultaResponse } from '../professor.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Usuario, UsuarioConsultaResponse } from '../usuario.model';
 import { MatPaginator, MatSort } from '@angular/material';
 
 @Component({
-  selector: 'app-usuario-consulta',
-  templateUrl: './usuario-consulta.component.html',
-  styleUrls: ['./usuario-consulta.component.css']
+  selector: 'app-professor-consulta',
+  templateUrl: './professor-consulta.component.html',
+  styleUrls: ['./professor-consulta.component.css']
 })
-export class UsuarioConsultaComponent implements OnInit {
+export class ProfessorConsultaComponent implements OnInit {
 
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private professorService: ProfessorService) { }
 
   filtro: string = '';
 
   public displayedColumns: string[] = ['id', 'nome', 'email', 'cpf', 'buttons'];
 
-  dados: UsuarioConsultaResponse = { lista: [], total: 0, paginas: 0 };
+  dados: ProfessorConsultaResponse = { lista: [], total: 0, paginas: 0 };
 
   isLoadingResults = false;
 
@@ -46,7 +46,7 @@ export class UsuarioConsultaComponent implements OnInit {
   atualizar() {
     this.isLoadingResults = true;
 
-    this.usuarioService
+    this.professorService
       .pesquisar(this.filtro, this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize)
       .subscribe((result) => {
         this.isLoadingResults = false;
@@ -61,15 +61,16 @@ export class UsuarioConsultaComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.activeRoute });
   }
 
-  editar(u: Usuario) {
+  editar(u: Professor) {
     this.router.navigate(['edit', u.id], { relativeTo: this.activeRoute });
   }
 
-  excluir(u: Usuario) {
+  excluir(u: Professor) {
     this.router.navigate(['delete', u.id], { relativeTo: this.activeRoute });
   }
 
-  visualizar(u: Usuario) {
+  visualizar(u: Professor) {
     this.router.navigate(['view', u.id], { relativeTo: this.activeRoute });
   }
+
 }

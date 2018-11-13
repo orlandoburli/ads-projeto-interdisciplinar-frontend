@@ -1,0 +1,15 @@
+.mat-column-id {
+    width: 50px;
+}
+
+.mat-column-status {
+    width: 200px;
+}
+
+.mat-column-quantidadeSemestres {
+    width: 100px;
+}
+
+.mat-column-buttons {
+    width: 120px;
+}

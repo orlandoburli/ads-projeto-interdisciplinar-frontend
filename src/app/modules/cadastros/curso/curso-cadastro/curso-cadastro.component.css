@@ -1,0 +1,21 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-lista-disciplinas {
+    margin-bottom: 5px;
+}
+
+.botao-lista-disciplinas-direita {
+    text-align: left;
+}
+
+.botao-lista-disciplinas-esquerda {
+    text-align: right;
+}

@@ -1,20 +1,20 @@
-import { UsuarioService } from './../usuario.service';
-import { Usuario } from './../usuario.model';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MensagemService } from 'src/app/modules/geral/mensagem-service/mensagem.service';
+import { ProfessorService } from './../professor.service';
+import { Component, OnInit } from '@angular/core';
+import { Professor } from '../professor.model';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MensagemService } from 'src/app/modules/geral/mensagem-service/mensagem.service';
 
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-usuario-cadastro',
-  templateUrl: './usuario-cadastro.component.html',
-  styleUrls: ['./usuario-cadastro.component.css']
+  selector: 'app-professor-cadastro',
+  templateUrl: './professor-cadastro.component.html',
+  styleUrls: ['./professor-cadastro.component.css']
 })
-export class UsuarioCadastroComponent implements OnInit, OnDestroy {
+export class ProfessorCadastroComponent implements OnInit {
 
-  vo: Usuario = {};
+  vo: Professor = {};
   acao: string = '';
   inscricoes: Subscription[] = [];
 
@@ -22,14 +22,14 @@ export class UsuarioCadastroComponent implements OnInit, OnDestroy {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private msg: MensagemService,
-    private usuarioService: UsuarioService) { }
+    private professorService: ProfessorService) { }
 
   ngOnInit() {
     this.acao = this.activeRoute.snapshot.url[0].path;
 
     let s1 = this.activeRoute.params.subscribe((dados) => {
       if (dados['id']) {
-        this.usuarioService.get(dados['id']).subscribe((u) => this.vo = u);
+        this.professorService.get(dados['id']).subscribe((u) => this.vo = u);
       }
     });
 
@@ -41,17 +41,17 @@ export class UsuarioCadastroComponent implements OnInit, OnDestroy {
   }
 
   voltar() {
-    this.router.navigate(['cadastros', 'usuario']);
+    this.router.navigate(['cadastros', 'professor']);
   }
 
   salvar() {
     if (this.acao == 'new') {
-      let s = this.usuarioService.insert(this.vo).subscribe((r) => {
+      let s = this.professorService.insert(this.vo).subscribe((r) => {
         this.voltar();
       }, (error) => this.inscricoes.push(this.msg.msgErroCadastro(error).subscribe((result) => null)));
       this.inscricoes.push(s);
     } else if (this.acao == 'edit') {
-      let s = this.usuarioService.update(this.vo).subscribe((r) => {
+      let s = this.professorService.update(this.vo).subscribe((r) => {
         this.voltar();
       }, (error) => this.inscricoes.push(this.msg.msgErroCadastro(error).subscribe((result) => null)));
       this.inscricoes.push(s);
@@ -64,7 +64,7 @@ export class UsuarioCadastroComponent implements OnInit, OnDestroy {
   }
 
   confirmarExcluir() {
-    let s = this.usuarioService.delete(this.vo.id).subscribe((r) => {
+    let s = this.professorService.delete(this.vo.id).subscribe((r) => {
       this.voltar();
     }, (error) => this.inscricoes.push(this.msg.msgErroCadastro(error).subscribe((result) => null)));
 
@@ -86,5 +86,6 @@ export class UsuarioCadastroComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.inscricoes.forEach((s) => s.unsubscribe());
   }
+
 
 }

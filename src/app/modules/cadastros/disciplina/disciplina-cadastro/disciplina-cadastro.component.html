@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-title>
+    Cadastro de Disciplinas
+  </mat-card-title>
+  <mat-card-subtitle>
+    Cadastro das Disciplinas da plataforma
+  </mat-card-subtitle>
+
+  <mat-card-content>
+    <div class="container example-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="70%">
+        <mat-form-field>
+          <input [disabled]="!isEnabled()" autofocus="autofocus" [(ngModel)]="vo.nome" matInput placeholder="Nome da Disciplina" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="30%">
+        <mat-form-field>
+          <input type="number" [disabled]="!isEnabled()" [(ngModel)]="vo.cargaHoraria" matInput placeholder="Carga Horária" />
+        </mat-form-field>
+      </div>
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div class="container example-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+      <div fxFlex="60%"></div>
+
+      <div fxFlex="20%" *ngIf="!isExcluirEnabled() && !isSalvarEnabled()">
+      </div>
+
+      <div fxFlex="20%" *ngIf="isExcluirEnabled()">
+        <button mat-raised-button color="accent" (click)="excluir()">
+          <mat-icon>delete</mat-icon>
+          Excluir
+        </button>
+      </div>
+
+      <div fxFlex="20%" *ngIf="isSalvarEnabled()">
+        <button mat-raised-button color="primary" (click)="salvar()">
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+      </div>
+
+      <div fxFlex="20%">
+        <button mat-raised-button color="primary" (click)="voltar()">
+          <mat-icon>history</mat-icon>
+          Voltar
+        </button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>

@@ -1,16 +1,16 @@
 <mat-card>
   <mat-card-title>
-    Consulta de Usuários
+    Consulta de Professores
   </mat-card-title>
   <mat-card-subtitle>
-    Consulta dos Usuários de administração do Sistema
+    Consulta dos Professores da plataforma
   </mat-card-subtitle>
 
   <mat-card-content>
     <div class="container example-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
       <div fxFlex="80%">
         <mat-form-field>
-          <input autofocus="autofocus" [(ngModel)]="filtro" [debounce]="300" (onDebounce)="pesquisar()" matInput placeholder="Pesquise pelo nome, cpf ou email do usuário..." />
+          <input autofocus="autofocus" [(ngModel)]="filtro" [debounce]="300" (onDebounce)="pesquisar()" matInput placeholder="Pesquise pelo nome, cpf ou email do professor..." />
         </mat-form-field>
       </div>
 
