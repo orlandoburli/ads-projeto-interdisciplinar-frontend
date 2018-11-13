@@ -36,7 +36,8 @@ jobs:
 
       - store_artifacts:
           path: deploy
-          
-  workflows:
-    version: 2
-      jobs: build
+
+workflows:
+  version: 2
+    jobs: 
+      - build
