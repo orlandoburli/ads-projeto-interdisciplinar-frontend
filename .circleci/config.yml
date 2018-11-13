@@ -27,7 +27,7 @@ jobs:
 
       # Build do angualr        
       - run: npm run-script build
-      
+
       # Zip do conteúdo gerado
       - run: cd dist/web-app && zip -r frontend-1.0.0-${CIRCLE_BUILD_NUM}.zip .
 
@@ -36,3 +36,7 @@ jobs:
 
       - store_artifacts:
           path: deploy
+          
+  workflows:
+    version: 2
+      jobs: build
