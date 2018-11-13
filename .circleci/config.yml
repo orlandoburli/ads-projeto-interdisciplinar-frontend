@@ -24,12 +24,15 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+
+      # Build do angualr        
       - run: npm run-script build
+      
+      # Zip do conteúdo gerado
       - run: cd dist/web-app && zip -r frontend-1.0.0-${CIRCLE_BUILD_NUM}.zip .
+
+      # Movendo o zip para um diretório de deploy
       - run: mkdir deploy && mv dist/web-app/*.zip deploy
-      - run: cd dist/web-app && ls -lath
-      - run: cd dist/web-app && pwd
 
       - store_artifacts:
           path: deploy
