@@ -45,7 +45,7 @@ export class DisciplinaConsultaComponent implements OnInit {
     setTimeout(() => $('[autofocus]').focus(), 300);
   }
 
-  private pesquisar() {
+  pesquisar() {
     this.paginator.pageIndex = 0;
 
     this.atualizar();

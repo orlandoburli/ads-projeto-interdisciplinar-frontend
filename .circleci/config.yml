@@ -31,5 +31,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-      - run: ng build --prod
+      - run: npm run-script build
+
 

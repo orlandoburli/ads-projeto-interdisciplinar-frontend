@@ -37,7 +37,7 @@ export class ProfessorConsultaComponent implements OnInit {
     this.pesquisar();
   }
 
-  private pesquisar() {
+  pesquisar() {
     this.paginator.pageIndex = 0;
 
     this.atualizar();
