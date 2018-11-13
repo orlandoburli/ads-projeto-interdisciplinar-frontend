@@ -27,6 +27,7 @@ jobs:
         
       - run: npm run-script build
       - run: cd dist/web-app && zip -r frontend-1.0.0-$CIRCLE_BUILD_NUM.zip .
+      - run: ls -lath
 
       - store_artifacts:
-          path: dist/web-app/frontend-1.0.0-$CIRCLE_BUILD_NUM.zip  
+          path: frontend-1.0.0-$CIRCLE_BUILD_NUM.zip  
