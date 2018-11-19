@@ -39,13 +39,13 @@ jobs:
   
   deploy:
     docker:
-      - image: buildpack-deps:trusty
+      - image: my-image-version-tag
+    working_directory: /tmp/my-project
     steps:
-      - checkout
       - run:
-          name: Deploy Master to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+          name: Deploy Master to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
 workflows:
   version: 2
   frontend_build:
