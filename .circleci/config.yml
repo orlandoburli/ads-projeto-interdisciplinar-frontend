@@ -23,6 +23,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - dist
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # Build do angualr        
@@ -41,7 +42,14 @@ jobs:
     docker:
       - image: circleci/node:10
     working_directory: ~/repo
+      
     steps:
+       - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+          - node_modules
+          - dist
       - run: pwd
       - run: ls -lath
       - run: cd ./node_modules/.bin/ && ls -lath
