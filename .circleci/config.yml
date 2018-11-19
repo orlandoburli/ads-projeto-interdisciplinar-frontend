@@ -20,14 +20,14 @@ jobs:
       - run: npm install
 
       - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies
+          paths:
+            - node_modules
+          key: v1-dependencies
       
       - save_cache:
-        paths:
-          - dist
-        key: v1-last-deploy
+          paths:
+            - dist
+          key: v1-last-deploy
 
       # Build do angualr        
       - run: npm run-script build
