@@ -38,8 +38,8 @@ jobs:
       - store_artifacts:
           path: deploy
   deploy:
-    docker:
-      - image: circleci/node:10
+    # docker:
+    #   - image: circleci/node:10
     working_directory: ~/repo
     steps:
        - restore_cache:
@@ -48,7 +48,8 @@ jobs:
           - v1-dependencies-
           - node_modules
           - dist
-      - run: pwd
+
+      # - run: pwd
       - run: ls -lath
       - run: cd ./node_modules/.bin/ && ls -lath
       - run:
