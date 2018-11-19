@@ -1,3 +1,4 @@
+import { AlunoModule } from './aluno/aluno.module';
 import { ProfessorModule } from './professor/professor.module';
 import { DisciplinaModule } from './disciplina/disciplina.module';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -11,7 +12,8 @@ import { CursoModule } from './curso/curso.module';
     UsuarioModule,
     CursoModule,
     DisciplinaModule,
-    ProfessorModule
+    ProfessorModule,
+    AlunoModule
   ],
   declarations: []
 })
