@@ -14,20 +14,20 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          keys: 
+            - v1-dependencies
 
       - run: npm install
 
       - save_cache:
         paths:
           - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}
+        key: v1-dependencies
       
       - save_cache:
         paths:
           - dist
-        key: last-deploy-v1
+        key: v1-last-deploy
 
       # Build do angualr        
       - run: npm run-script build
@@ -50,8 +50,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - last-deploy-v1
+            - v1-dependencies
+            - v1-last-deploy
 
       - run: pwd
 
