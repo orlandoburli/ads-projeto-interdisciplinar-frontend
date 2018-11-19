@@ -27,6 +27,8 @@ jobs:
       - save_cache:
           paths:
             - dist
+            - firebase.json
+            - .firebaserc
           key: v1-last-deploy
 
       # Build do angualr        
