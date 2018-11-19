@@ -24,15 +24,15 @@ jobs:
             - node_modules
           key: v1-dependencies
       
+      # Build do angular
+      - run: npm run-script build
+
       - save_cache:
           paths:
             - dist
             - firebase.json
             - .firebaserc
-          key: v1-last-deploy
-
-      # Build do angualr        
-      - run: npm run-script build
+          key: v1-last-deploy-${CIRCLE_BUILD_NUM}
 
       # Zip do conteúdo gerado
       - run: cd dist/web-app && zip -r frontend-1.0.0-${CIRCLE_BUILD_NUM}.zip .
@@ -53,7 +53,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies
-            - v1-last-deploy
+            - v1-last-deploy-${CIRCLE_BUILD_NUM}
 
       - run: pwd
 
