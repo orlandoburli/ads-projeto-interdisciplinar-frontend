@@ -47,10 +47,10 @@ jobs:
     steps:
        - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-            - node_modules
-            - dist
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+          - node_modules
+          - dist
       - run: pwd
       - run: ls -lath
       - run: cd ./node_modules/.bin/ && ls -lath
