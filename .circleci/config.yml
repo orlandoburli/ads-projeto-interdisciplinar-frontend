@@ -16,15 +16,18 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
 
       - run: npm install
 
       - save_cache:
-          paths:
-            - node_modules
-            - dist
-          key: v1-dependencies-{{ checksum "package.json" }}
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+      
+      - save_cache:
+        paths:
+          - dist
+        key: last-deploy-v1
 
       # Build do angualr        
       - run: npm run-script build
@@ -45,20 +48,17 @@ jobs:
     working_directory: ~/repo
     
     steps:
-
-       - restore_cache:
+      - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-          - node_modules
-          - dist
+            - v1-dependencies-{{ checksum "package.json" }}
+            - last-deploy-v1
 
       - run: pwd
 
       - run: ls -lath
 
       - run: cd ./node_modules/.bin/ && ls -lath
-      
+
       - run:
           name: Deploy Master to Firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
