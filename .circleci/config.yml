@@ -50,20 +50,17 @@ jobs:
     working_directory: ~/repo
     
     steps:
+      # Restaura o cache das dependências
       - restore_cache:
           keys:
             - v1-dependencies
       
+      # Restaura o cache da build
       - restore_cache:
           keys:
             - v1-last-deploy
 
-      - run: pwd
-
-      - run: ls -lath
-
-      - run: cd ./node_modules/.bin/ && ls -lath
-
+      # Realiza o deploy no Firebase
       - run:
           name: Deploy Master to Firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
